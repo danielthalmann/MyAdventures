@@ -7,6 +7,7 @@ using System.Globalization;
 public class I18n
 {
     public static Dictionary<string, string> dictionary;
+    public static string lang { get; private set; } = "en";
     public static string fallback_lang = "en";
 
     static I18n()
@@ -14,8 +15,6 @@ public class I18n
         dictionary = new Dictionary<string, string>();
 
         SystemLanguage currentLanguage = Application.systemLanguage;
-
-        string lang = "en";
 
         foreach (CultureInfo culture in CultureInfo.GetCultures(CultureTypes.AllCultures))
         {
@@ -28,6 +27,12 @@ public class I18n
 
         loadTranslate(lang);
 
+    }
+
+    public static void SetLanguage(string l)
+    {
+        lang = l.ToLower();
+        loadTranslate(lang);
     }
 
     public static string translate(string text)
