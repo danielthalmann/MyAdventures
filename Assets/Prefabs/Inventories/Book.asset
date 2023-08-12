@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Book
   displayName: Book
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1da5cd805c8de064aba0bcff1d25da1d, type: 3}
   description: 
   prefab: {fileID: 7487342719943313045, guid: a5fc4be38750d4c4d970163901cab899, type: 3}
