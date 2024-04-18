@@ -198,15 +198,15 @@ MonoBehaviour:
     HasValue: 0
   displaySortOrder: 0
   childIdentifiers:
-  - c88d16e5272a4e241b0ef0ac2e53b73d
-  - fd7c55dab0fce234b8c25f6ffca523c1
-  - 2c5177b11d81d824dbb064f9ac8527da
   - e7a046c753c3c3d4aacc91f6597f310d
+  - c88d16e5272a4e241b0ef0ac2e53b73d
+  - 2fea114e74ecf3c4f920e1d5cc1c4c40
   - 52eb9df5db46521439908db3a29a1bbb
-  - b7716510a1f36934c87976f3a81dbf3d
   - 0f8eb3f400726694eb47beb1a9f94ce8
   - 46fbfdf3fc43db0458918377fd40293e
-  - 2fea114e74ecf3c4f920e1d5cc1c4c40
+  - b7716510a1f36934c87976f3a81dbf3d
+  - fd7c55dab0fce234b8c25f6ffca523c1
+  - 2c5177b11d81d824dbb064f9ac8527da
   codecChannels:
     Value: []
     HasValue: 0
@@ -449,15 +449,15 @@ MonoBehaviour:
   RealChannelSettings: []
   Plugins: []
   MasterBanks:
-  - Desktop/Master
+  - Master
   Banks:
-  - Desktop/Dialogue_CN
-  - Desktop/Dialogue_EN
-  - Desktop/Dialogue_JP
-  - Desktop/Music
-  - Desktop/SFX
-  - Desktop/Vehicles
-  - Desktop/VO
+  - Dialogue_CN
+  - Dialogue_EN
+  - Dialogue_JP
+  - Music
+  - SFX
+  - Vehicles
+  - VO
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
@@ -473,17 +473,17 @@ MonoBehaviour:
   HideSetupWizard: 1
   LastEventReferenceScanVersion: 131605
   Platforms:
+  - {fileID: -9220616172366348773}
   - {fileID: -8095545098124767297}
   - {fileID: -6128036729245822168}
   - {fileID: -5021418090607875713}
-  - {fileID: 7084681183999899095}
-  - {fileID: 7320719999397806129}
-  - {fileID: -9220616172366348773}
+  - {fileID: -1817980523066307137}
   - {fileID: -990403581696973824}
-  - {fileID: 6721524434308265258}
   - {fileID: 2150260631150374266}
   - {fileID: 5992432803265013171}
-  - {fileID: -1817980523066307137}
+  - {fileID: 6721524434308265258}
+  - {fileID: 7084681183999899095}
+  - {fileID: 7320719999397806129}
   MigratedPlatforms: 0c000000150000000b0000000a00000009000000120000000800000005000000060000000200000001000000
 --- !u!114 &2150260631150374266
 MonoBehaviour:
