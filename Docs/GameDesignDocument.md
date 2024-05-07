@@ -58,9 +58,36 @@ Aperçu de l'interface du joueur
 
 Décrire les scènes du jeu
 
-## Scène 1
+## idée en vrac pour l'histoire
 
-2078 on envoie des colons vers différentes planètes. Flavia est une astonaute qui accèpte d'être envoyé dans une capsule
+- Rencontre une autre personne qui s'est égalment écrasée sur la planète.
+- Grotte qui a été complétement rempli de plantation alors que la planète est désert
+- Exprimer la solitude dans le récit
+- Le personnage a des visions et n'est pas sûr de leurs véracité. Elle voit toujours un renard.
+- Impossible de contacter la terre
+- Flavia est fille unique. Elle n'a pas connu son père et sa mère est décédé d'un cancer du foie quand elle avait 21 ans. 
+- Planter une antenne sur un endroit de la planète.
+- Creuser à quelque part pour libérer le passage.
+- planète respirable.
+- scène de réparation en cliquant sur des zone à connecter.
+ 
+
+## Scène d'introduction
+
+On voit la petite capsule traverser l'espace. Lorsqu'elle arrive près de la planète K2-411
+
+https://science.nasa.gov/exoplanets/exoplanet-catalog/
+
+2078 on envoie des colons vers différentes planètes. Flavia est une astonaute qui accèpte d'être envoyé dans une capsule jusqu'à 
+
+## Scène du crash
+
+F: "Non mais c'est pas vrai ! Saleté de machine ! Tomber en panne à la moitié di trajet !"
+
+F: "Bon voyons si on peut communiquer notre position"
+
+
+
 
 ## Scène rencontre
 
