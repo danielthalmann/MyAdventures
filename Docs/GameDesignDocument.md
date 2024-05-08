@@ -56,7 +56,9 @@ Aperçu de l'interface du joueur
 
 # Storyboard
 
-Décrire les scènes du jeu
+2478 on envoie des colons vers différentes planètes. Flavia est une astonaute qui accèpte d'être envoyé dans une capsule jusqu'à une planète lointaine.
+Il est urgent de trouver d'autre monde qui puisse accueillir l'humanité. La planète terre est de plus en plus polué.
+Sa mission est d'atteindre la planète K2-411 (K2-116)
 
 ## idée en vrac pour l'histoire
 
@@ -78,11 +80,10 @@ On voit la petite capsule traverser l'espace. Lorsqu'elle arrive près de la pla
 
 https://science.nasa.gov/exoplanets/exoplanet-catalog/
 
-2078 on envoie des colons vers différentes planètes. Flavia est une astonaute qui accèpte d'être envoyé dans une capsule jusqu'à 
 
 ## Scène du crash
 
-F: "Non mais c'est pas vrai ! Saleté de machine ! Tomber en panne à la moitié di trajet !"
+F: "Non mais c'est pas vrai ! Saleté de machine ! Tomber en panne au pire moment !"
 
 F: "Bon voyons si on peut communiquer notre position"
 
