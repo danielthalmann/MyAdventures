@@ -95,6 +95,10 @@ F: "Bon voyons si on peut communiquer notre position"
 
 ## Scène ...
 
+## Scène sur la crevasse
+
+on doit descendre dans une crevasse. 
+
 # Mecanique du jeu
 
 ## Enemies
