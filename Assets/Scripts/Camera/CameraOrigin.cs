@@ -21,6 +21,13 @@ public class CameraOrigin : MonoBehaviour
     {
         if (moveCamera)
         {
+            if (smoothSpeed == 0)
+            {
+                cam.transform.position = targetPosition.position;
+                moveCamera = false;
+                return;
+            }
+
             Vector3 SmoothPosition = Vector3.Lerp(cam.transform.position, targetPosition.position, smoothSpeed / 10 * Time.deltaTime);
             cam.transform.position = SmoothPosition;
 
