@@ -1,0 +1,7 @@
+{45b4488e-a6a3-4ce4-98cb-de77d5d08c9d} bank:/Master
+{dda9685a-d7d8-00a6-1e82-548924238a05} bank:/Master.strings
+{0856fa0d-f258-423c-91af-5a2ae8283569} bank:/Music
+{8b316d66-4280-42a0-b019-4aae6cf3c75f} bus:/
+{4cceefbe-5881-4b6c-a0ce-7687ce5e3795} bus:/Reverb
+{596b4eda-83bd-46f2-af9f-b1d96172d215} event:/Music/Level01
+{5c6c8eb7-3f0b-4706-ac43-213341cf4544} parameter:/Music/Intensity
