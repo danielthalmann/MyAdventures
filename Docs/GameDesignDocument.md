@@ -83,9 +83,9 @@ https://science.nasa.gov/exoplanets/exoplanet-catalog/
 
 ## Scène du crash
 
-F: "Non mais c'est pas vrai ! Saleté de machine ! Tomber en panne au pire moment !"
+F: "Non, mais c'est pas vrai ! Saleté de machine ! Tomber en panne au pire moment !"
 
-F: "Bon voyons si on peut communiquer notre position"
+F: "Bon, voyons si on peut communiquer notre position"
 
 
 
