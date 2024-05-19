@@ -10,6 +10,9 @@ public class I18n
     public static string lang { get; private set; } = "en";
     public static string fallback_lang = "en";
 
+    public delegate void OnChangeLanguage(string lang);
+    public static OnChangeLanguage onChangeLanguage;
+
     static I18n()
     {
         dictionary = new Dictionary<string, string>();
@@ -33,6 +36,8 @@ public class I18n
     {
         lang = l.ToLower();
         loadTranslate(lang);
+        onChangeLanguage?.Invoke(lang);
+
     }
 
     public static string translate(string text)
