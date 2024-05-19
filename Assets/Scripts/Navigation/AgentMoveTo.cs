@@ -21,7 +21,7 @@ public class AgentMoveTo : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && !GameManager.instance.lockPlayerMovement)
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

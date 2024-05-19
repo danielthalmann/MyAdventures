@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a941fb03012604880e229481d9cf49, type: 3}
+  m_Name: Start starship
+  m_EditorClassIdentifier: 
+  sentences:
+  - character: Flavia
+    sentence: "Non, mais c'est pas vrai ! Salet\xE9 de machine ! Tomber en panne
+      au pire moment !"
+    soundReference:
+      Guid:
+        Data1: 1495061650
+        Data2: 1100271344
+        Data3: -601094473
+        Data4: -1153579205
+      Path: event:/Dialog/Non, mais c'est pas vrai !
+  - character: 
+    sentence: Bon, voyons si on peut communiquer notre position.
+    soundReference:
+      Guid:
+        Data1: 1103617156
+        Data2: 1171062668
+        Data3: -1225677670
+        Data4: -506366073
+      Path: event:/Dialog/Voyons si on peut communiquer
