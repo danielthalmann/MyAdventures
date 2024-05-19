@@ -8,7 +8,12 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance { get; private set; }
 
-    public bool lockPlayerMovement = false;
+    public bool playerEnable = false;
+
+    public delegate void OnChangePlayerEnabled(bool enabled);
+
+    public static OnChangePlayerEnabled onChangePlayerEnabled;
+
 
     private void Awake()
     {
@@ -21,10 +26,12 @@ public class GameManager : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
-    void Start()
+    public void setPlayerEnabled(bool enabled)
     {
-
+        playerEnable = enabled;
+        onChangePlayerEnabled?.Invoke(enabled);
     }
+
+
 
 }

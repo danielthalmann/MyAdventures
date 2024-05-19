@@ -35,8 +35,8 @@ public class DialogManager : MonoBehaviour
 
         sentences.Clear();
 
-        GameManager.instance.lockPlayerMovement = true;
-        
+        GameManager.instance.setPlayerEnabled(false);
+
         foreach (Sentence sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
@@ -73,7 +73,8 @@ public class DialogManager : MonoBehaviour
         StopSound();
         dialogEnable = false;
         dialogBox.SetActive(dialogEnable);
-        GameManager.instance.lockPlayerMovement = false;
+        GameManager.instance.setPlayerEnabled(true);
+
     }
 
     private void PlaySound(FMODUnity.EventReference eventReference)

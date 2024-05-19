@@ -18,10 +18,14 @@ public class AgentMoveTo : MonoBehaviour
         this.agent = GetComponent<NavMeshAgent>();
         destination = this.transform.position;
         footSteps = AudioManager.instance.CreateInstance(AudioManager.instance.footSteps);
+        GameManager.onChangePlayerEnabled += OnChangePlayerEnabled;
     }
+
+
     public void Update()
     {
-        if (Input.GetMouseButtonUp(0) && !GameManager.instance.lockPlayerMovement)
+
+        if (Input.GetMouseButtonUp(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -61,6 +65,14 @@ public class AgentMoveTo : MonoBehaviour
         {
             footSteps.stop(STOP_MODE.ALLOWFADEOUT);
         }
+    }
+
+    private void OnChangePlayerEnabled(bool enabled)
+    {
+        if ( !enabled )
+            footSteps.stop(STOP_MODE.ALLOWFADEOUT);
+
+        this.enabled = enabled;
     }
 
 }
