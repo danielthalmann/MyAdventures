@@ -83,11 +83,19 @@ https://science.nasa.gov/exoplanets/exoplanet-catalog/
 
 ## Scène du crash
 
+On se retrouve sur la planète avec notre vaisseau qui est endomagé.
+
 F: "Non, mais c'est pas vrai ! Saleté de machine ! Tomber en panne au pire moment !"
 
 F: "Bon, voyons si on peut communiquer notre position"
 
+Il y a un coffre non loin du vaisseau.
 
+On peut l'ouvrir et il contient une pelle.
+
+F: "L'outil indispensable à toute expédition."
+
+F: "Le passage est bloqué !"
 
 
 ## Scène rencontre
