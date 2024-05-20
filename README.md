@@ -1,4 +1,8 @@
 # My Adventures
 
+Mes aventures est un jeu vidéo point and click se passant sur une planète lointaine. 
 
-<img src="Docs/Images/plan.png" alt="plan" >
+Je suis encore au début du projet. 
+
+[documentation du jeu](Docs)
+
