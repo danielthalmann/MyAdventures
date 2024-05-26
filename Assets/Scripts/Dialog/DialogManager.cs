@@ -4,8 +4,7 @@ using TMPro;
 using UnityEngine;
 using FMOD.Studio;
 using FMODUnity;
-using Mono.Cecil;
-using UnityEngine.Rendering;
+
 
 public class DialogManager : MonoBehaviour
 {
