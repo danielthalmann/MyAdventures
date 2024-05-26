@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Animation Data", menuName = "Scriptable Objets/Item Data", order = 0)]
 public class ItemInventory : ScriptableObject
 { 
-    public string name;
+    public string item_name;
     public Image image;
   
 
