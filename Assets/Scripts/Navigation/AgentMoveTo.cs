@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using FMOD.Studio;
+using UnityEngine.EventSystems;
 
 public class AgentMoveTo : MonoBehaviour
 {
@@ -30,10 +31,13 @@ public class AgentMoveTo : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                destination = hit.point;
-                agent.destination = destination;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    destination = hit.point;
+                    agent.destination = destination;
+                }
             }
         }
     }

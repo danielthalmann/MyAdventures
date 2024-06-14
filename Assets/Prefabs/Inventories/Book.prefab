@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 140095655788803110}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.00048814, y: 0.55, z: 0}
-  m_LocalScale: {x: 1.0112782, y: 0.14393, z: 1.0667}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.89, y: 0.12666911, z: 0.9387753}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4467214145019451055}
   m_RootOrder: 0
@@ -110,8 +110,8 @@ Transform:
   m_GameObject: {fileID: 3844659665280647465}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.00048814, y: -0.49, z: 0}
-  m_LocalScale: {x: 1.0112782, y: 0.14392999, z: 1.0667}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.89, y: 0.1266691, z: 0.9387753}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4467214145019451055}
   m_RootOrder: 1
@@ -192,9 +192,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4208264764800203744}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00048814, y: 0, z: 0}
-  m_LocalScale: {x: 0.90722, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.00048814, y: 0.04, z: 0}
+  m_LocalScale: {x: 0.76, y: 0.83772403, z: 0.83772403}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4467214145019451055}
   m_RootOrder: 2
@@ -275,8 +275,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7237008356692341046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.49946, y: 0.06, z: 0}
-  m_LocalScale: {x: 0.03242963, y: 1.0045623, z: 1.0667}
+  m_LocalPosition: {x: -0.445, y: 0.02, z: 0}
+  m_LocalScale: {x: 0.03, y: 1, z: 0.92}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4467214145019451055}
@@ -342,6 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4467214145019451055}
   - component: {fileID: 3081927913948661452}
+  - component: {fileID: 5676919873539206903}
   m_Layer: 0
   m_Name: Book
   m_TagString: Untagged
@@ -381,3 +382,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2234967, y: 1.6344426, z: 1.3946112}
   m_Center: {x: -0.0008983071, y: 0.058698505, z: -0.022444049}
+--- !u!114 &5676919873539206903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7487342719943313045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0086ae46637a73248b44b36eed1d87bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceItem: {fileID: 11400000, guid: 3d3182f00187e6c45b8ac16e1f1a8bde, type: 2}
