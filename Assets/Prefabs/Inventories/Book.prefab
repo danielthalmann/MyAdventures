@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 4467214145019451055}
   - component: {fileID: 3081927913948661452}
   - component: {fileID: 5676919873539206903}
+  - component: {fileID: -431431878016408864}
   m_Layer: 0
   m_Name: Book
   m_TagString: Untagged
@@ -395,3 +396,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   referenceItem: {fileID: 11400000, guid: 3d3182f00187e6c45b8ac16e1f1a8bde, type: 2}
+--- !u!114 &-431431878016408864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7487342719943313045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411fa0d49fe762f468e9be7b93e7c920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectMaterial: {fileID: 2100000, guid: f50879989624a4a47a7b9894d737ffbd, type: 2}
+  selectGameObject:
+  - {fileID: 140095655788803110}
+  - {fileID: 3844659665280647465}
+  - {fileID: 4208264764800203744}
+  - {fileID: 7237008356692341046}

@@ -8,7 +8,7 @@ public class Selectable : MonoBehaviour
 {
 
     public Material selectMaterial;
-    public GameObject selectGameObject;
+    public List<GameObject> selectGameObject;
 
     private bool selected = false;
 
@@ -16,8 +16,13 @@ public class Selectable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (selectGameObject == null)
-            selectGameObject = this.gameObject;
+        selectGameObject = new List<GameObject>();
+
+        if (selectGameObject.Count == 0)
+        {
+            Debug.LogWarning("object empty");
+            selectGameObject.Add(this.gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -31,13 +36,22 @@ public class Selectable : MonoBehaviour
 
         if (!selected)
         {
-            Renderer render = selectGameObject.GetComponent<Renderer>();
+            foreach (GameObject go in selectGameObject)
+            {
+                Renderer render = go.GetComponent<Renderer>();
 
-            Material[] materialsArray = new Material[(render.GetComponent<Renderer>().materials.Length + 1)];
-            render.GetComponent<Renderer>().materials.CopyTo(materialsArray, 0);
-            materialsArray[materialsArray.Length - 1] = selectMaterial;
+                if (render != null)
+                {
+                    Material[] materialsArray = new Material[(render.GetComponent<Renderer>().materials.Length + 1)];
+                    render.GetComponent<Renderer>().materials.CopyTo(materialsArray, 0);
+                    materialsArray[materialsArray.Length - 1] = selectMaterial;
 
-            render.GetComponent<Renderer>().materials = materialsArray;
+                    render.GetComponent<Renderer>().materials = materialsArray;
+                }
+
+
+            }
+
             selected = true;
         }
 
@@ -50,15 +64,22 @@ public class Selectable : MonoBehaviour
 
         if (selected)
         {
-            Renderer render = selectGameObject.GetComponent<Renderer>();
 
-            Material[] materialsArray = new Material[(render.GetComponent<Renderer>().materials.Length - 1)];
-            for (int i = 0; i < render.GetComponent<Renderer>().materials.Length - 1; i++)
+            foreach (GameObject go in selectGameObject)
             {
-                materialsArray[i] = render.GetComponent<Renderer>().materials[i];
-            }
+                Renderer render = go.GetComponent<Renderer>();
 
-            render.GetComponent<Renderer>().materials = materialsArray;
+                if (render != null)
+                {
+                    Material[] materialsArray = new Material[(render.GetComponent<Renderer>().materials.Length - 1)];
+                    for (int i = 0; i < render.GetComponent<Renderer>().materials.Length - 1; i++)
+                    {
+                        materialsArray[i] = render.GetComponent<Renderer>().materials[i];
+                    }
+
+                    render.GetComponent<Renderer>().materials = materialsArray;
+                }
+            }
             selected = false;
         }
     }
