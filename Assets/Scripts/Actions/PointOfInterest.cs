@@ -5,7 +5,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.Progress;
+
 
 public class PointOfInterest : MonoBehaviour
 {
