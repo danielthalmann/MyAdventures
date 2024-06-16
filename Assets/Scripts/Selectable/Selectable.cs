@@ -20,7 +20,6 @@ public class Selectable : MonoBehaviour
 
         if (selectGameObject.Count == 0)
         {
-            Debug.LogWarning("object empty");
             selectGameObject.Add(this.gameObject);
         }
     }
@@ -49,10 +48,10 @@ public class Selectable : MonoBehaviour
                     render.GetComponent<Renderer>().materials = materialsArray;
                 }
 
-
             }
 
             selected = true;
+
         }
 
     }

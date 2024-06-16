@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PickObject : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PickObject : MonoBehaviour
     public GameObject UiPickInfoBox = null;
     public TMP_Text UiTitle = null;
     public TMP_Text UiDescription = null;
+
+    public UnityEvent onPickItem;
 
 
     private void Start()
@@ -28,11 +31,11 @@ public class PickObject : MonoBehaviour
 
     public void PickItem()
     {
-        Debug.Log("pick");
 
         if (item != null)
         {
             InventoriesManager.instance.Add(item.GetComponent<ItemObject>().Pick());
+            onPickItem.Invoke();
             item = null;
             UpdateUi();
         }

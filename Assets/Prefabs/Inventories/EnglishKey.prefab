@@ -425,8 +425,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4467214145019451055}
   - component: {fileID: 3081927913948661452}
-  - component: {fileID: 5676919873539206903}
   - component: {fileID: -1651840532278919326}
+  - component: {fileID: 8990729592400055336}
   m_Layer: 0
   m_Name: EnglishKey
   m_TagString: Untagged
@@ -468,19 +468,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2234967, y: 1.6344426, z: 1.3946112}
   m_Center: {x: -0.0008983071, y: 0.058698505, z: -0.022444049}
---- !u!114 &5676919873539206903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7487342719943313045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0086ae46637a73248b44b36eed1d87bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  referenceItem: {fileID: 11400000, guid: ceebe2d2f7ac2074b9e8b723c3286221, type: 2}
 --- !u!114 &-1651840532278919326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,6 +488,31 @@ MonoBehaviour:
   - {fileID: 434746928529713222}
   - {fileID: 1727771863275963079}
   - {fileID: 6978475356225915804}
+--- !u!114 &8990729592400055336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7487342719943313045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de24745b2204de4f86ecc1a9713043b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interestName: Key English
+  canBeWatched: 0
+  canBeTaked: 1
+  canBeCombined: 0
+  watchDialogue: {fileID: 0}
+  TakeDialogue: {fileID: 0}
+  referenceInventoryItem: {fileID: 11400000, guid: ceebe2d2f7ac2074b9e8b723c3286221, type: 2}
+  onCombine:
+    m_PersistentCalls:
+      m_Calls: []
+  onPickItem:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8746262713062024315
 GameObject:
   m_ObjectHideFlags: 0

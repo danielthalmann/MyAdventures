@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f860a989-742d-42b5-b59b-cbeb9c3ae49c}">
+		<property name="assetPath">
+			<value>Dialog/ElevenLabs_2024-06-16T19_19_53_Grace_Ho, mon livre de bord. Je ne pensais pas le trouver en si bon état ici..mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>4.3624489795918366</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{07d68106-27f0-48ff-b9f4-067412e05e02}</destination>
+		</relationship>
+	</object>
+</objects>

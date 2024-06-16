@@ -35,8 +35,7 @@ public class AgentMoveTo : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out hit))
                 {
-                    destination = hit.point;
-                    agent.destination = destination;
+                    SetDestination(hit.point);
                 }
             }
         }
@@ -47,6 +46,11 @@ public class AgentMoveTo : MonoBehaviour
         UpdateSound();
     }
 
+    public void SetDestination(Vector3 destination)
+    {
+        this.destination = destination;
+        agent.destination = destination;
+    }
 
     private void OnDrawGizmos()
     {

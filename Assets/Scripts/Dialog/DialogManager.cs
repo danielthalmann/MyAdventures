@@ -14,8 +14,21 @@ public class DialogManager : MonoBehaviour
     public GameObject dialogBox;
     public bool dialogEnable;
 
+    public static DialogManager instance;
+
+
     private EventInstance eventInstance;
 
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("Found more than one Dialog Manager in the scene.");
+        }
+
+        instance = this;
+
+    }
 
     // Start is called before the first frame update
     void Start()

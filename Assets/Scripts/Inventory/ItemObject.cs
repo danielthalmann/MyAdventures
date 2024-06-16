@@ -8,10 +8,7 @@ public class ItemObject : MonoBehaviour
 
     public InventoryItemData Pick()
     {
-        Debug.Log("pick and destroy");
-
         Destroy(gameObject);
-        Debug.Log("after destroy");
 
         return referenceItem;
     }
