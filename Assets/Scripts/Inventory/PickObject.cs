@@ -34,7 +34,7 @@ public class PickObject : MonoBehaviour
 
         if (item != null)
         {
-            InventoriesManager.instance.Add(item.GetComponent<ItemObject>().Pick());
+            InventoriesManager.instance.Add(item.GetComponent<InventoryItemObject>().Pick());
             onPickItem.Invoke();
             item = null;
             UpdateUi();
@@ -49,7 +49,7 @@ public class PickObject : MonoBehaviour
 
         if (item != null)
         {
-            ItemObject itemObject = item.GetComponent<ItemObject>();
+            InventoryItemObject itemObject = item.GetComponent<InventoryItemObject>();
             UiPickInfoBox.SetActive(true);
             UiTitle.text = itemObject.referenceItem.name;
             UiDescription.text = itemObject.referenceItem.description;

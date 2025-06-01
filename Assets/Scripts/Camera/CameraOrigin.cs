@@ -48,6 +48,7 @@ public class CameraOrigin : MonoBehaviour
             moveCamera = true;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         moveCamera = false;

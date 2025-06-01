@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static Translation;
 
 public class Translator : MonoBehaviour
 {
@@ -9,10 +10,10 @@ public class Translator : MonoBehaviour
     void Start()
     {
         UpdateText();
-        I18n.onChangeLanguage += OnChangeLanguage;
+        Translation.onChangeLanguage += OnChangeLanguage;
     }
 
-    protected void OnChangeLanguage(string lang)
+    protected void OnChangeLanguage()
     {
         UpdateText();
     }
@@ -23,7 +24,7 @@ public class Translator : MonoBehaviour
 
         if (text != null)
         {
-            text.text = I18n.translate(text.text);
+            text.text = I18n.Trans().Translate(text.text);
         }
     }
 

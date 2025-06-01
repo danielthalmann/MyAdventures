@@ -7,6 +7,12 @@ using FMODUnity;
 public class Sentence
 {
     /// <summary>
+    /// tag pour reconnaitre l'étape
+    /// </summary>
+    public string tag;
+
+
+    /// <summary>
     /// Nom de la personne qui parle
     /// </summary>
     public string character;
@@ -20,6 +26,17 @@ public class Sentence
     /// <summary>
     /// identifiant du son
     /// </summary>
-    public EventReference soundReference;
+    public string soundReference;
+
+    /// <summary>
+    /// indique que c'est le dernier message
+    /// </summary>
+    public bool end;
+
+    /// <summary>
+    /// Option du dialogue
+    /// </summary>
+    public DialogOption[] options;
+	
 
 }

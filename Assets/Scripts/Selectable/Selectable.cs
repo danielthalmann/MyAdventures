@@ -16,8 +16,6 @@ public class Selectable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        selectGameObject = new List<GameObject>();
-
         if (selectGameObject.Count == 0)
         {
             selectGameObject.Add(this.gameObject);

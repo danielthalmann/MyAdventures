@@ -1,85 +1,111 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
-using FMOD.Studio;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using static UnityEngine.GraphicsBuffer;
 
-public class AgentMoveTo : MonoBehaviour
+public class AgentMoveTo : MonoBehaviour, PlayerMovementInterface
 {
-    public Camera cam;
     protected NavMeshAgent agent;
     protected Vector3 destination;
+    protected Vector3 objectPosition;
+    protected float timeout;
 
-    protected EventInstance footSteps;
+    protected bool inMoving;
+
+    [field: SerializeField]
+    public Vector3 velocity { get; private set; }
+
+    public delegate void OnAgentMove();
+    public OnAgentMove onAgentMove;
+
+    public delegate void OnAgentStop();
+    public OnAgentStop onAgentStop;
+    
+    public GameObject hitObject { get; private set; }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        this.agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         destination = this.transform.position;
-        footSteps = AudioManager.instance.CreateInstance(AudioManager.instance.footSteps);
-        GameManager.onChangePlayerEnabled += OnChangePlayerEnabled;
+        inMoving = false;
+        velocity = agent.velocity;
+        hitObject = null;
+        timeout = 0;
     }
-
 
     public void Update()
     {
 
-        if (Input.GetMouseButtonUp(0))
+        if (inMoving)
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (!EventSystem.current.IsPointerOverGameObject())
+            timeout += Time.deltaTime;
+            if (timeout > 0.1  && agent.velocity == Vector3.zero)
             {
-                if (Physics.Raycast(ray, out hit))
-                {
-                    SetDestination(hit.point);
-                }
+                UpdateOrientation();
+                timeout = 0;
+                inMoving = false;
+                onAgentStop?.Invoke();
             }
         }
+
+        velocity = agent.velocity;
+    }
+
+    private void UpdateOrientation()
+    {
+
+        if (Mathf.Abs(transform.position.sqrMagnitude - destination.sqrMagnitude) > 0.01)
+        {
+
+            if (hitObject != null)
+            {
+                // rotate to object hit
+                Vector3 targetDirection = hitObject.transform.position - transform.position;
+                targetDirection.y = 0;
+
+                // Calculate a rotation a step closer to the target and applies rotation to this object
+                transform.rotation = Quaternion.LookRotation(targetDirection);
+            }
+        }
+
     }
 
     public void FixedUpdate()
     {
-        UpdateSound();
+        
     }
 
-    public void SetDestination(Vector3 destination)
+    public void SetDestination(Vector3 destination, GameObject hitObject)
     {
+        timeout = 0;
+        inMoving = true;
+        onAgentMove?.Invoke();
         this.destination = destination;
+        this.hitObject = hitObject;
+        objectPosition = destination;
         agent.destination = destination;
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        if (inMoving)
+            Gizmos.color = Color.red;
+        else
+            Gizmos.color = Color.green;
+
         Gizmos.DrawSphere(destination, .2f);
-    }
 
-    private void UpdateSound()
-    {
-        if(agent.velocity != Vector3.zero)
-        {
-            PLAYBACK_STATE playbackState;
-            footSteps.getPlaybackState(out playbackState);
-            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
-            {
-                footSteps.start();
-            }
-
-        } else
-        {
-            footSteps.stop(STOP_MODE.ALLOWFADEOUT);
-        }
+        Gizmos.DrawLine(transform.position, destination);
     }
 
     private void OnChangePlayerEnabled(bool enabled)
     {
-        if ( !enabled )
-            footSteps.stop(STOP_MODE.ALLOWFADEOUT);
-
         this.enabled = enabled;
     }
 

@@ -81,6 +81,7 @@ Sa mission est d'atteindre la planète K2-411 (K2-116)
 - planète respirable.
 - scène de réparation en cliquant sur des zone à connecter.
 - Flavia rencontre une autre civilisation qui cherche aussi à partir de leurs planète mais pour des autres raisons.
+- Planter des graines pour faire pousser une plante.
  
 
 ## Scène d'introduction
@@ -89,6 +90,8 @@ On voit la petite capsule traverser l'espace. Lorsqu'elle arrive près de la pla
 
 https://science.nasa.gov/exoplanets/exoplanet-catalog/
 
+
+## Chapitre 1 : le crash
 
 ## Scène du crash
 
