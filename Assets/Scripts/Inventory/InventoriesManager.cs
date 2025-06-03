@@ -12,14 +12,19 @@ public class InventoriesManager : MonoBehaviour
     public delegate void OnChangeInventory(Dictionary<InventoryItemData, InventoryItem> inventories);
     public static OnChangeInventory onChangeInventory;
 
-    public static InventoriesManager instance { get; private set; }
+    public delegate void OnSelected();
+    public static OnSelected onSelected;
 
+
+    public static InventoriesManager instance { get; private set; }
 
     public GameObject uiIventoriesBox;
     public GameObject uiIventoriesList;
     public GameObject uiSlot;
 
     public bool inventoriesOpen = false;
+
+    private InventoryItemData currentSelected;
 
     private void Awake()
     {
@@ -111,6 +116,36 @@ public class InventoriesManager : MonoBehaviour
 
 
     /// <summary>
+    /// Selectionne l'élément de l'inventaire 
+    /// </summary>
+    /// <param name="reference"></param>
+    public void Select(InventoryItemData reference)
+    {
+        if(reference == null)
+        {
+            currentSelected = null;
+            return;
+        }
+
+        if (inventories.TryGetValue(reference, out InventoryItem value))
+        {
+            currentSelected = reference;
+        } else
+        {
+            currentSelected = null;
+        }
+
+        onSelected!.Invoke();
+
+    }
+
+    public InventoryItemData GetCurrentInventoryItemData()
+    {
+        return currentSelected;
+    }
+
+
+    /// <summary>
     /// emet l'événement de changement de l'inventaire
     /// </summary>
     public void ChangeInventory()
@@ -131,13 +166,16 @@ public class InventoriesManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (InventoryItem item in inventories.Values)
+        foreach (InventoryItemData itemData in inventories.Keys)
         {
+
+            InventoryItem item = inventories[itemData];
             GameObject newSlot = Instantiate(uiSlot, uiIventoriesList.transform);
             InventoryUISlot UIslot = newSlot.GetComponent<InventoryUISlot>();
             UIslot.icon.sprite = item.data.icon;
             UIslot.text.text = item.data.displayName;
-            UIslot.number.text = item.stackSize.ToString();
+            UIslot.data = itemData;
+
         }
 
     }

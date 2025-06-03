@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[System.Serializable]
-public class CursorInfo
+[CreateAssetMenu(fileName = "Data", menuName = "Scriptable Objets/Cursor", order = 1)]
+public class CursorInfo: ScriptableObject
 {
+    public string tag;
     public Sprite cursor;
-    public Vector2 offset;
+    public Vector2 hotspot;
+    public Vector2 size;
 }

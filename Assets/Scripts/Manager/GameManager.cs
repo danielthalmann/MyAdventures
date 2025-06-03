@@ -1,9 +1,4 @@
-using FMOD.Studio;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,10 +28,22 @@ public class GameManager : MonoBehaviour
         DialogManager.onDialogEventReference += OnDialogEventReference;
         DialogManager.onDialogStart += OnDialogStart;
         DialogManager.onDialogEnd += OnDialogEnd;
+        InventoriesManager.onSelected += OnSelectedInventory;
         agent = player.GetComponent<AgentMoveTo>();
         agent.onAgentStop += OnAgentStop;
 
+
     }
+
+    private void OnSelectedInventory()
+    {
+        InventoryItemData data = InventoriesManager.instance.GetCurrentInventoryItemData();
+
+        CursorManager.instance.AttachImage(data.icon);
+
+        InventoriesManager.instance.CloseInventoriesBox();
+    }
+
 
     private void OnAgentStop()
     {
