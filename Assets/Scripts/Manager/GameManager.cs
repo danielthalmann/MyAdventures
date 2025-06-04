@@ -100,7 +100,6 @@ public class GameManager : MonoBehaviour
     {
         if (eventReference == "pick")
         {
-            Debug.Log(eventReference);
             if (selectedObject != null)
             {
                 InventoryItemObject iventory = selectedObject.GetComponent<InventoryItemObject>();

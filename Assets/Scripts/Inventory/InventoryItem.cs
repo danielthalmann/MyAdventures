@@ -12,8 +12,6 @@ public class InventoryItem
     {
         data = source;
         stackSize = 1;
-        AddToStack();
-
     }
 
     public void AddToStack()

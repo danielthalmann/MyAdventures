@@ -1,6 +1,7 @@
 using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class InventoriesManager : MonoBehaviour
@@ -78,7 +79,7 @@ public class InventoriesManager : MonoBehaviour
     /// <param name="reference"></param>
     public void Add(InventoryItemData reference)
     {
-
+        
         if (inventories.TryGetValue(reference, out InventoryItem value))
         {
             value.AddToStack();
@@ -88,7 +89,7 @@ public class InventoriesManager : MonoBehaviour
             InventoryItem newItem = new InventoryItem(reference);
             inventories.Add(reference, newItem);
         }
-
+        
         onAddItem?.Invoke(reference);
         UpdateUI();
         
@@ -101,14 +102,11 @@ public class InventoriesManager : MonoBehaviour
     /// <param name="reference"></param>
     public void Remove(InventoryItemData reference)
     {
-        Debug.Log(reference);
         if (inventories.TryGetValue(reference, out InventoryItem value))
         {
-            Debug.Log(value.stackSize);
             value.RemoveFromStack();
             if (value.stackSize == 0)
             {
-                Debug.Log(value.stackSize);
                 inventories.Remove(reference);
             }
         }

@@ -257,7 +257,6 @@ public class DialogManager : MonoBehaviour
                 }else if (line != null && line.StartsWith('!'))
                 {
                     sentence.options[0].eventReference = line.Substring(1).Trim();
-                    Debug.Log(sentence.options[0].eventReference);
 
                     index++;
                     line = forwardBlank(lines, ref index);
