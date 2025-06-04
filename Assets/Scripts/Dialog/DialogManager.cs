@@ -1,6 +1,7 @@
 using FMOD.Studio;
 using FMODUnity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
@@ -45,7 +46,7 @@ public class DialogManager : MonoBehaviour
 
     public static DialogManager instance;
 
-    private GameObject hitObject;
+    private GameObject selectedObject;
 
 
     private void Awake()
@@ -74,16 +75,22 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    public void StartObjectDialog(GameObject o)
+    public void StartObjectDialog(GameObject o, Dialogue dialogue = null)
     {
-        hitObject = o;
-        if (hitObject != null)
+        selectedObject = o;
+        if (selectedObject != null)
         {
-            DialogTrigger trigger = hitObject.GetComponent<DialogTrigger>();
-            if (trigger != null)
+            if (dialogue == null)
             {
-                this.StartDialogue(trigger.dialogue);
-                //hitObject = null;
+                DialogTrigger trigger = selectedObject.GetComponent<DialogTrigger>();
+                if (trigger != null)
+                {
+                    this.StartDialogue(trigger.dialogue);
+                    //selectedObject = null;
+                }
+            } else
+            {
+                this.StartDialogue(dialogue);
             }
         }
     }
@@ -313,7 +320,7 @@ public class DialogManager : MonoBehaviour
         {
             clearUI();
             DisplayNextSentence();
-            onDialogStart?.Invoke(hitObject);
+            onDialogStart?.Invoke(selectedObject);
         }
 
     }
@@ -437,10 +444,18 @@ public class DialogManager : MonoBehaviour
         StopSpeek();
         dialogEnable = false;
         currentSentence = null;
-        dialogBox.SetActive(dialogEnable);
         onUnityDialogEnd.Invoke();
-        onDialogEnd?.Invoke(hitObject);
+        onDialogEnd?.Invoke(selectedObject);
+
+        StartCoroutine(CloseDialogBox());
      
+    }
+
+    IEnumerator CloseDialogBox()
+    {
+        yield return new WaitForSeconds(.01f);
+        dialogBox.SetActive(dialogEnable);
+
     }
 
     private void PlaySpeek() 

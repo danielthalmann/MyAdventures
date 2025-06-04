@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c89b320b2b22ec4b827e7593863b2a5, type: 3}
-  m_Name: EngliskKey
+  m_Script: {fileID: 11500000, guid: 74a941fb03012604880e229481d9cf49, type: 3}
+  m_Name: ShipRepair
   m_EditorClassIdentifier: 
-  id: english_key
-  displayName: English Key
-  icon: {fileID: 21300000, guid: d19f213cd5bb12a4cbb2a7ce9087cd45, type: 3}
-  number: 0
-  description: "Une cl\xE9 englaise"
-  prefab: {fileID: 0}
+  dialogText: "#\nJe vais utiliser la cl\xE9 pour d\xE9bloquer cela\n#\nOui, \xE7a
+    fonctionne\n\n\n\n\n"

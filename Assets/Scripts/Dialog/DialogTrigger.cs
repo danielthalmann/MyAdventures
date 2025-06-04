@@ -6,8 +6,6 @@ public class DialogTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
 
-    public bool isTrigger = false;
-
     void Start()
     {
      
@@ -15,13 +13,7 @@ public class DialogTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        Debug.Log("TriggerDialogue");
-        FindFirstObjectByType<DialogManager>().StartObjectDialog(gameObject);
+        DialogManager.instance.StartObjectDialog(gameObject);
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if(isTrigger)
-            TriggerDialogue();
-    }
 }

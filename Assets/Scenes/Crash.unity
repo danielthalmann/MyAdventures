@@ -5390,6 +5390,7 @@ GameObject:
   - component: {fileID: 1319285386}
   - component: {fileID: 1319285385}
   - component: {fileID: 1319285387}
+  - component: {fileID: 1319285388}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -5446,7 +5447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: a7ec3e6833027864a9f15c4a24bd3f1a, type: 2}
-  isTrigger: 0
 --- !u!114 &1319285386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5487,6 +5487,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 4b3071d113f87f24fb37f0b071ab1c7a, type: 3}
+--- !u!114 &1319285388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319285381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a3405198309b040aa25e3e4ad73b3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogFalse: {fileID: 11400000, guid: 845a7a796da02fe44bac6ce9f99cfdf3, type: 2}
+  dialogTrue: {fileID: 11400000, guid: 9f33fdbb05acf9e4e911faf95bf0a8cc, type: 2}
+  combineId: book
+  destroyItemOnTrue: 1
+  destroyItemOnFalse: 0
 --- !u!4 &1319750589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5472622940992281205, guid: 858a170bc671b37419342e935cc92cab, type: 3}
@@ -7405,6 +7422,18 @@ MonoBehaviour:
       - m_Target: {fileID: 662832429}
         m_TargetAssemblyTypeName: InventoriesManager, Assembly-CSharp
         m_MethodName: CloseInventoriesBox
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 662832429}
+        m_TargetAssemblyTypeName: InventoriesManager, Assembly-CSharp
+        m_MethodName: ClearSelection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

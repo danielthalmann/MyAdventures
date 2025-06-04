@@ -9,8 +9,11 @@ public class InventoriesManager : MonoBehaviour
     [SerializeField]
     public Dictionary<InventoryItemData, InventoryItem> inventories;
 
-    public delegate void OnChangeInventory(Dictionary<InventoryItemData, InventoryItem> inventories);
-    public static OnChangeInventory onChangeInventory;
+    public delegate void OnAddItem(InventoryItemData itemData);
+    public static OnAddItem onAddItem;
+
+    public delegate void OnRemoveItem(InventoryItemData itemData);
+    public static OnRemoveItem onRemoveItem;
 
     public delegate void OnSelected();
     public static OnSelected onSelected;
@@ -51,7 +54,7 @@ public class InventoriesManager : MonoBehaviour
     public void CloseInventoriesBox()
     {
         inventoriesOpen = false;
-        uiIventoriesBox.SetActive(inventoriesOpen);
+        StartCoroutine(InventoriesBox());
     }
 
     /// <summary>
@@ -60,9 +63,15 @@ public class InventoriesManager : MonoBehaviour
     public void ToggleInventoriesBox()
     {
         inventoriesOpen= !inventoriesOpen;
-        uiIventoriesBox.SetActive(inventoriesOpen);
+        StartCoroutine(InventoriesBox());
     }
 
+    IEnumerator InventoriesBox()
+    {
+        yield return new WaitForSeconds(.01f);
+        uiIventoriesBox.SetActive(inventoriesOpen);
+    }
+         
     /// <summary>
     /// Ajoute une entrée dans l'inventaire
     /// </summary>
@@ -80,7 +89,9 @@ public class InventoriesManager : MonoBehaviour
             inventories.Add(reference, newItem);
         }
 
-        ChangeInventory();
+        onAddItem?.Invoke(reference);
+        UpdateUI();
+        
     }
 
 
@@ -90,14 +101,26 @@ public class InventoriesManager : MonoBehaviour
     /// <param name="reference"></param>
     public void Remove(InventoryItemData reference)
     {
+        Debug.Log(reference);
         if (inventories.TryGetValue(reference, out InventoryItem value))
         {
+            Debug.Log(value.stackSize);
             value.RemoveFromStack();
             if (value.stackSize == 0)
             {
+                Debug.Log(value.stackSize);
                 inventories.Remove(reference);
             }
         }
+
+        if (currentSelected == reference)
+        {
+            currentSelected = null;
+        }
+
+        onRemoveItem?.Invoke(reference);
+        UpdateUI();
+
     }
 
     /// <summary>
@@ -124,35 +147,30 @@ public class InventoriesManager : MonoBehaviour
         if(reference == null)
         {
             currentSelected = null;
-            return;
         }
-
-        if (inventories.TryGetValue(reference, out InventoryItem value))
+        else
         {
-            currentSelected = reference;
-        } else
-        {
-            currentSelected = null;
+            if (inventories.TryGetValue(reference, out InventoryItem value))
+            {
+                currentSelected = reference;
+            } else
+            {
+                currentSelected = null;
+            }
         }
 
         onSelected!.Invoke();
 
     }
 
+    public void ClearSelection()
+    {
+        Select(null);
+    }
+
     public InventoryItemData GetCurrentInventoryItemData()
     {
         return currentSelected;
-    }
-
-
-    /// <summary>
-    /// emet l'événement de changement de l'inventaire
-    /// </summary>
-    public void ChangeInventory()
-    {
-        onChangeInventory?.Invoke(inventories);
-
-        UpdateUI();
     }
 
     /// <summary>

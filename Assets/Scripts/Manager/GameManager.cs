@@ -1,4 +1,5 @@
 using UnityEngine;
+using static InventoriesManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     private AgentMoveTo agent;
 
-    private GameObject currentObject;
+    private GameObject selectedObject;
 
     private void Awake()
     {
@@ -23,12 +24,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        currentObject = null;
+        selectedObject = null;
 
         DialogManager.onDialogEventReference += OnDialogEventReference;
         DialogManager.onDialogStart += OnDialogStart;
         DialogManager.onDialogEnd += OnDialogEnd;
         InventoriesManager.onSelected += OnSelectedInventory;
+        InventoriesManager.onRemoveItem += OnRemoveItem;
         agent = player.GetComponent<AgentMoveTo>();
         agent.onAgentStop += OnAgentStop;
 
@@ -39,32 +41,54 @@ public class GameManager : MonoBehaviour
     {
         InventoryItemData data = InventoriesManager.instance.GetCurrentInventoryItemData();
 
-        CursorManager.instance.AttachImage(data.icon);
+        if (data)
+        {
+            CursorManager.instance.AttachImage(data.icon);
+        } else
+        {
+            CursorManager.instance.AttachImage(null);
+        }
 
         InventoriesManager.instance.CloseInventoriesBox();
+
     }
 
 
     private void OnAgentStop()
     {
-        Debug.Log("AgentStop");
-        currentObject = agent.hitObject;
+        selectedObject = agent.hitObject;
 
-        if(currentObject != null)
+        if(selectedObject != null)
         {
-            DialogTrigger trigger = currentObject.GetComponent<DialogTrigger>();
-            if (trigger != null)
+            InventoryItemData data = InventoriesManager.instance.GetCurrentInventoryItemData();
+            if (data == null)
             {
-                trigger.TriggerDialogue();
+                DialogTrigger trigger = selectedObject.GetComponent<DialogTrigger>();
+                if (trigger != null)
+                {
+                    trigger.TriggerDialogue();
+                }
+            } else
+            {
+                ItemCombine combine = selectedObject.GetComponent<ItemCombine>();
+
+                if (combine != null)
+                {
+                    if (combine.CanCombine(data))
+                        combine.TriggerDialogueTrue(data);
+                    else
+                        combine.TriggerDialogueFalse(data);
+                }
+
             }
+
         }
     }
 
     private void OnDialogStart(GameObject gameObject)
     {
-        Debug.Log("DialogStart");
         InputManager.instance.playerMove = false;
-        currentObject = gameObject;
+        selectedObject = gameObject;
     }
 
     private void OnDialogEnd(GameObject gameObject)
@@ -77,17 +101,24 @@ public class GameManager : MonoBehaviour
         if (eventReference == "pick")
         {
             Debug.Log(eventReference);
-            if (currentObject != null)
+            if (selectedObject != null)
             {
+                InventoryItemObject iventory = selectedObject.GetComponent<InventoryItemObject>();
 
-                InventoryItemObject iventory = currentObject.GetComponent<InventoryItemObject>();
-                Debug.Log(iventory);
                 if (iventory != null)
                 {
                     InventoriesManager.instance.Add(iventory.Pick());
                 }
 
             }
+        }
+    }
+
+    private void OnRemoveItem(InventoryItemData item)
+    {
+        if(InventoriesManager.instance.GetCurrentInventoryItemData() == null)
+        {
+            CursorManager.instance.AttachImage(null);
         }
     }
 
