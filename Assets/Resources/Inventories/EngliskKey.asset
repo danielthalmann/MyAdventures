@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EngliskKey
   m_EditorClassIdentifier: 
   id: english_key
-  displayName: English Key
+  displayName: "Cl\xE9 \xE0 molette"
   icon: {fileID: 21300000, guid: d19f213cd5bb12a4cbb2a7ce9087cd45, type: 3}
   number: 0
-  description: "Une cl\xE9 englaise"
+  description: "Une cl\xE9 \xE0 molette"
   prefab: {fileID: 0}

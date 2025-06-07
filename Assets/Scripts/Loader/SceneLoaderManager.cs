@@ -51,6 +51,23 @@ public class SceneLoaderManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        if(fadeImage == null)
+        {
+            Canvas canvas = FindAnyObjectByType<Canvas>();
+            if (!canvas)
+            {
+                Debug.LogError("Fail load cursor. The scene can contain canvas");
+            }
+            GameObject gameObject = new GameObject();
+
+            fadeImage = gameObject.AddComponent<Image>();
+            gameObject.name = "Cursor";
+            gameObject.transform.parent = canvas.transform;
+            fadeImage.SetNativeSize();
+        }
+
+
         onStartLoading?.Invoke();
         StartCoroutine(FadeLoadingScreen(2));
     }

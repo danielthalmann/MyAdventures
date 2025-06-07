@@ -63,22 +63,28 @@ public class PointOfInterestManager : MonoBehaviour
         Vector3 vscreen = Camera.main.WorldToScreenPoint(pointOfInterest.transform.position + pointOfInterest.offset);
         UiBox.transform.position = vscreen + offset;
 
-        if (translate)
+
+        if (!UiBox.activeSelf)
         {
-            UiTitle.text = translate.Translate(pointOfInterest.title);
-        } else
-        {
-            UiTitle.text = pointOfInterest.title;
+            UiTitle.text = "";
+
+            UiBox.SetActive(true);
+            if (pointOfInterest.hasContextMenu)
+                UiContextMenu.SetActive(true);
+            else
+                UiContextMenu.SetActive(false);
+
+            if (translate)
+            {
+                UiTitle.text = translate.Translate(pointOfInterest.title);
+            }
+            else
+            {
+                UiTitle.text = pointOfInterest.title;
+            }
+
+            onShow.Invoke();
         }
-
-        UiBox.SetActive(true);
-        if (pointOfInterest.hasContextMenu)
-            UiContextMenu.SetActive(true);
-        else
-            UiContextMenu.SetActive(false);
-
-
-        onShow.Invoke();
 
     }
 

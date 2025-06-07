@@ -8,7 +8,7 @@ public class Selectable : MonoBehaviour
 {
 
     public Material selectMaterial;
-    public List<GameObject> selectGameObject;
+    public List<GameObject> selectGameObject = new List<GameObject>();
 
     private bool selected = false;
 
