@@ -1,17 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class PointOfInterestManager : MonoBehaviour
 {
 
     [Header("UI")]
-    public GameObject UiBox = null;
-    public TMP_Text UiTitle = null;
-    public GameObject UiContextMenu = null;
-    public Vector3 offset;
+    public PointOfInterestUI uiDocument;
 
     [Header("Events")]
     public UnityEvent onShow;
@@ -48,7 +43,7 @@ public class PointOfInterestManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UiBox.SetActive(false);
+        uiDocument.Hide();
     }
 
     public void SetPointOfInterest(PointOfInterestAbstract poi)
@@ -60,37 +55,36 @@ public class PointOfInterestManager : MonoBehaviour
     public void ShowPointOfInterest()
     {
 
-        Vector3 vscreen = Camera.main.WorldToScreenPoint(pointOfInterest.transform.position + pointOfInterest.offset);
-        UiBox.transform.position = vscreen + offset;
-
-
-        if (!UiBox.activeSelf)
+        if (!uiDocument.IsShow())
         {
-            UiTitle.text = "";
-
-            UiBox.SetActive(true);
-            if (pointOfInterest.hasContextMenu)
-                UiContextMenu.SetActive(true);
-            else
-                UiContextMenu.SetActive(false);
-
-            if (translate)
-            {
-                UiTitle.text = translate.Translate(pointOfInterest.title);
-            }
-            else
-            {
-                UiTitle.text = pointOfInterest.title;
-            }
-
+            uiDocument.SetText(Translate(pointOfInterest.title));
+            uiDocument.Show();
             onShow.Invoke();
         }
 
+
+        Vector3 vscreen = Camera.main.WorldToScreenPoint(pointOfInterest.transform.position + pointOfInterest.offset);
+        Debug.Log(vscreen);
+        uiDocument.SetPosition(vscreen);
+
+
+    }
+
+    private string Translate(string text)
+    {
+        if (translate)
+        {
+            return translate.Translate(text);
+        }
+        else
+        {
+            return text;
+        }
     }
 
     public void HidePointOfInterest()
     {
-        UiBox.SetActive(false);
+        uiDocument.Hide();
         onHide.Invoke();
     }
 
