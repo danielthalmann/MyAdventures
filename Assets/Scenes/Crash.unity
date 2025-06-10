@@ -2349,7 +2349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &575388742
 Transform:
   m_ObjectHideFlags: 0
@@ -2379,7 +2379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 0}
   fadeColor: {r: 0, g: 0, b: 0, a: 0}
-  duration: 3
+  duration: 10
 --- !u!1 &583625176
 GameObject:
   m_ObjectHideFlags: 0

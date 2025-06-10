@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class SceneLoaderManager : MonoBehaviour
 {
@@ -62,9 +63,9 @@ public class SceneLoaderManager : MonoBehaviour
             GameObject gameObject = new GameObject();
 
             fadeImage = gameObject.AddComponent<Image>();
-            gameObject.name = "Cursor";
+            gameObject.name = "Splash screen";
             gameObject.transform.parent = canvas.transform;
-            fadeImage.SetNativeSize();
+            AdjustPanelToScreen(gameObject, 0);
         }
 
 
@@ -100,6 +101,31 @@ public class SceneLoaderManager : MonoBehaviour
         {
             onFinishLoading?.Invoke();
             fadeImage.gameObject.SetActive(false);
+        }
+    }
+
+    // Adjust the panel to fill the screen, allowing for optional padding
+    private void AdjustPanelToScreen(GameObject panel, float paddingPercentage = 0)
+    {
+        RectTransform panelRect = panel.GetComponent<RectTransform>();
+
+        if (panelRect != null)
+        {
+            // Calculate screen size considering padding
+            float screenWidth = Screen.width * (1f - paddingPercentage);
+            float screenHeight = Screen.height * (1f - paddingPercentage);
+
+            // Apply screen size to the panel's rect transform
+            panelRect.sizeDelta = new Vector2(screenWidth, screenHeight);
+
+            Vector2 halfScreen = new Vector2(Screen.width / 2, Screen.height / 2);
+            panelRect.anchoredPosition = new Vector2(0, 0);
+            panelRect.position = halfScreen;
+
+        }
+        else
+        {
+            Debug.LogError("Panel's RectTransform is missing.");
         }
     }
 
