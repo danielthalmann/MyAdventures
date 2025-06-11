@@ -10,7 +10,7 @@ public class SceneTrigger : ActionTrigger
 
     public override void Trigger()
     {
-        SceneLoaderManager.getInstance().loadScene(sceneName);
+        SceneLoaderManager.getInstance().LoadScene(sceneName);
     }
 
 }

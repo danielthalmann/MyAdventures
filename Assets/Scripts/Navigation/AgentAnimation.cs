@@ -15,7 +15,6 @@ public class AgentAnimation : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         animator.SetFloat("speed", agent.velocity.magnitude);

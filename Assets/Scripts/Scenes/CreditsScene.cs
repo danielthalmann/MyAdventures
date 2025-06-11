@@ -5,7 +5,6 @@ public class CreditsScene : MonoBehaviour
 {
 
     public Credits credits;
-    public SceneLoaderManager sceneManager;
 
     private bool sceneLoaded = false;
 
@@ -18,13 +17,13 @@ public class CreditsScene : MonoBehaviour
         if (!credits.play)
         {
             sceneLoaded = true;
-            sceneManager.loadScene("Menu");
+            SceneLoaderManager.instance.LoadScene("Menu");
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             sceneLoaded = true;
-            sceneManager.loadScene("Menu");
+            SceneLoaderManager.instance.LoadScene("Menu");
         }
         
     }

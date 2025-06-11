@@ -2,14 +2,16 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static DialogManager;
 
 public class InputManager : MonoBehaviour
 {
     public AgentMoveTo agent;
     public Camera cam;
     public LayerMask mask;
-    public bool playerMove = true;
+    public bool allowMove = true;
 
+    private bool dialogOpen = false;
     public static InputManager instance { get; private set; }
 
     // Use this for initialization
@@ -19,6 +21,9 @@ public class InputManager : MonoBehaviour
         {
             cam = Camera.main;
         }
+        DialogManager.onDialogStart += OnDialogStart;
+        DialogManager.onDialogEnd += OnDialogEnd;
+
     }
 
     private void Awake()
@@ -29,6 +34,16 @@ public class InputManager : MonoBehaviour
         }
 
         instance = this;
+    }
+
+    private void OnDialogStart(GameObject gameObject)
+    {
+        dialogOpen = true;
+    }
+
+    private void OnDialogEnd(GameObject gameObject)
+    {
+        dialogOpen = false;
     }
 
     public bool PointerIsOverUI(Vector2 screenPos)
@@ -51,7 +66,14 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0) && playerMove)
+        if (dialogOpen)
+        {
+            if(Input.GetMouseButtonUp(0))
+            {
+                DialogManager.instance.DisplayNextSentence();
+            }
+        } 
+        else if (allowMove && Input.GetMouseButtonUp(0))
         {
             if (!PointerIsOverUI(Input.mousePosition))
             {

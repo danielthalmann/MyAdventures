@@ -10,13 +10,13 @@ public class MenuManager : MonoBehaviour
 
     public void ButtonMenu()
     {
-        SceneLoaderManager.getInstance().loadScene(menuSceneName);
+        SceneLoaderManager.getInstance().LoadScene(menuSceneName);
     }
 
 
     public void ButtonStart()
     {
-        SceneLoaderManager.getInstance().loadScene(startSceneName);
+        SceneLoaderManager.getInstance().LoadScene(startSceneName);
     }
 
     public void ButtonOptions()
@@ -26,7 +26,7 @@ public class MenuManager : MonoBehaviour
 
     public void ButtonCredits()
     {
-        SceneLoaderManager.getInstance().loadScene(CreditsSceneName);
+        SceneLoaderManager.getInstance().LoadScene(CreditsSceneName);
     }
 
     public void SetLanguage(string language)

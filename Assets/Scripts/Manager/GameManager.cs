@@ -1,5 +1,6 @@
 using UnityEngine;
 using static InventoriesManager;
+using static SceneLoaderManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
         DialogManager.onDialogEnd += OnDialogEnd;
         InventoriesManager.onSelected += OnSelectedInventory;
         InventoriesManager.onRemoveItem += OnRemoveItem;
+        SceneLoaderManager.onStartLoading += OnStartLoading;
         agent = player.GetComponent<AgentMoveTo>();
         agent.onAgentStop += OnAgentStop;
 
@@ -51,6 +53,11 @@ public class GameManager : MonoBehaviour
 
         InventoriesManager.instance.CloseInventoriesBox();
 
+    }
+
+    private void OnStartLoading()
+    {
+        InputManager.instance.allowMove = false;
     }
 
 
@@ -87,13 +94,13 @@ public class GameManager : MonoBehaviour
 
     private void OnDialogStart(GameObject gameObject)
     {
-        InputManager.instance.playerMove = false;
+        InputManager.instance.allowMove = false;
         selectedObject = gameObject;
     }
 
     private void OnDialogEnd(GameObject gameObject)
     {
-        InputManager.instance.playerMove = true;
+        InputManager.instance.allowMove = true;
     }
 
     private void OnDialogEventReference(string eventReference)

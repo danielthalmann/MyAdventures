@@ -16,9 +16,6 @@ public class AgentMoveTo : MonoBehaviour, PlayerMovementInterface
 
     protected bool inMoving;
 
-    [field: SerializeField]
-    public Vector3 velocity { get; private set; }
-
     public delegate void OnAgentMove();
     public OnAgentMove onAgentMove;
 
@@ -34,7 +31,6 @@ public class AgentMoveTo : MonoBehaviour, PlayerMovementInterface
         agent = GetComponent<NavMeshAgent>();
         destination = this.transform.position;
         inMoving = false;
-        velocity = agent.velocity;
         hitObject = null;
         timeout = 0;
     }
@@ -53,8 +49,6 @@ public class AgentMoveTo : MonoBehaviour, PlayerMovementInterface
                 onAgentStop?.Invoke();
             }
         }
-
-        velocity = agent.velocity;
     }
 
     private void UpdateOrientation()

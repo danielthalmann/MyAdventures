@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static SceneLoaderManager;
 using static UnityEngine.Rendering.DebugUI;
 
 public class SceneLoaderManager : MonoBehaviour
@@ -13,12 +14,15 @@ public class SceneLoaderManager : MonoBehaviour
     public Color fadeColor;
     public float duration;
 
-    private static SceneLoaderManager instance;
+    public static SceneLoaderManager instance;
 
     string currentSceneName = null;
 
-    public Action onStartLoading;
-    public Action onFinishLoading;
+    public delegate void OnStartLoading();
+    public static OnStartLoading onStartLoading;
+
+    public delegate void OnFinishLoading();
+    public static OnFinishLoading onFinishLoading;
 
 
     public static SceneLoaderManager getInstance()
@@ -42,7 +46,7 @@ public class SceneLoaderManager : MonoBehaviour
 
     }
 
-    public void loadScene(string sceneName)
+    public void LoadScene(string sceneName)
     {
         currentSceneName = sceneName;
         onStartLoading?.Invoke();
