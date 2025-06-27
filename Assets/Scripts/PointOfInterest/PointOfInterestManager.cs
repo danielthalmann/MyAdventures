@@ -61,13 +61,8 @@ public class PointOfInterestManager : MonoBehaviour
             uiDocument.Show();
             onShow.Invoke();
         }
-
-
         Vector3 vscreen = Camera.main.WorldToScreenPoint(pointOfInterest.transform.position + pointOfInterest.offset);
-        Debug.Log(vscreen);
         uiDocument.SetPosition(vscreen);
-
-
     }
 
     private string Translate(string text)

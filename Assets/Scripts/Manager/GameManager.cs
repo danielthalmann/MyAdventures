@@ -1,5 +1,5 @@
+using UnityEditor.Overlays;
 using UnityEngine;
-using static InventoriesManager;
 using static SceneLoaderManager;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     private AgentMoveTo agent;
 
     private GameObject selectedObject;
+
+    private bool loadingSavedGame = false;
+    private SaveData savedData;
 
     private void Awake()
     {
@@ -33,9 +36,10 @@ public class GameManager : MonoBehaviour
         InventoriesManager.onSelected += OnSelectedInventory;
         InventoriesManager.onRemoveItem += OnRemoveItem;
         SceneLoaderManager.onStartLoading += OnStartLoading;
+        SceneLoaderManager.onFinishLoading += OnFinishLoading;
+        SceneLoaderManager.onCompletedLoading += OnCompletedLoading;
         agent = player.GetComponent<AgentMoveTo>();
         agent.onAgentStop += OnAgentStop;
-
 
     }
 
@@ -60,6 +64,15 @@ public class GameManager : MonoBehaviour
         InputManager.instance.allowMove = false;
     }
 
+    private void OnFinishLoading()
+    {
+        InputManager.instance.allowMove = true;
+    }
+
+    private void OnCompletedLoading()
+    {
+        LoadSavedData();
+    }
 
     private void OnAgentStop()
     {
@@ -126,6 +139,26 @@ public class GameManager : MonoBehaviour
         {
             CursorManager.instance.AttachImage(null);
         }
+    }
+
+    public void Save(ref SaveData data)
+    {
+        data.SceneName = SceneLoaderManager.instance.GetCurrentSceneName();
+        data.PlayerPosition = agent.transform.position;
+    }
+
+    public void Load(SaveData data)
+    {
+        SceneLoaderManager.instance.LoadScene(data.SceneName);
+        loadingSavedGame = true;
+        savedData = data;
+        //LoadSavedData();
+    }
+
+    private void LoadSavedData()
+    {
+        agent.transform.position = savedData.PlayerPosition;
+        loadingSavedGame = false;
     }
 
 }

@@ -24,6 +24,10 @@ public class SceneLoaderManager : MonoBehaviour
     public delegate void OnFinishLoading();
     public static OnFinishLoading onFinishLoading;
 
+    public delegate void OnCompletedLoading();
+    public static OnCompletedLoading onCompletedLoading;
+
+    private AsyncOperation async;
 
     public static SceneLoaderManager getInstance()
     {
@@ -100,12 +104,23 @@ public class SceneLoaderManager : MonoBehaviour
         if (fadeOut)
         {
             onFinishLoading?.Invoke();
-            AsyncOperation async = SceneManager.LoadSceneAsync(currentSceneName);
+            async = SceneManager.LoadSceneAsync(currentSceneName);
+            async.completed += Completed;
         } else
         {
             onFinishLoading?.Invoke();
             fadeImage.gameObject.SetActive(false);
         }
+    }
+
+    private void Completed(AsyncOperation async)
+    {
+        onCompletedLoading?.Invoke();
+    }
+
+    public string GetCurrentSceneName()
+    {
+        return SceneManager.GetActiveScene().name;
     }
 
     // Adjust the panel to fill the screen, allowing for optional padding

@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     public Camera cam;
     public LayerMask mask;
     public bool allowMove = true;
+    public PauseMenu pauseMenu;
 
     private bool dialogOpen = false;
     public static InputManager instance { get; private set; }
@@ -24,6 +25,9 @@ public class InputManager : MonoBehaviour
         DialogManager.onDialogStart += OnDialogStart;
         DialogManager.onDialogEnd += OnDialogEnd;
 
+        pauseMenu.onPause += OnPause;
+        pauseMenu.onResume += OnResume;
+
     }
 
     private void Awake()
@@ -34,6 +38,15 @@ public class InputManager : MonoBehaviour
         }
 
         instance = this;
+    }
+
+    private void OnPause()
+    {
+        allowMove = false;
+    }
+    private void OnResume()
+    {
+        allowMove = true;
     }
 
     private void OnDialogStart(GameObject gameObject)
@@ -73,29 +86,42 @@ public class InputManager : MonoBehaviour
                 DialogManager.instance.DisplayNextSentence();
             }
         } 
-        else if (allowMove && Input.GetMouseButtonUp(0))
+        else
         {
-            if (!PointerIsOverUI(Input.mousePosition))
+            if (allowMove && Input.GetKeyUp(KeyCode.Escape))
             {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
+                if (pauseMenu != null)
+                {
+                    pauseMenu.Pause();
+                }
+            }
 
-                if (Physics.Raycast(ray, out hit, 100, mask)) { 
+            if (allowMove && Input.GetMouseButtonUp(0))
+            {
+                if (!PointerIsOverUI(Input.mousePosition))
+                {
+                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(ray, out hit, 100, mask)) { 
                 
-                    GameObject hitObject = hit.collider.gameObject;
-                    PointOfInterest poi = hitObject.GetComponent<PointOfInterest>();
-                    if (null != poi)
-                    {
-                        agent.SetDestination(poi.GetPointOfInterestDestination(), hitObject);
+                        GameObject hitObject = hit.collider.gameObject;
+                        PointOfInterest poi = hitObject.GetComponent<PointOfInterest>();
+                        if (null != poi)
+                        {
+                            agent.SetDestination(poi.GetPointOfInterestDestination(), hitObject);
+                        }
+                        else
+                        {
+                            agent.SetDestination(hit.point, null);
+                        }
                     }
-                    else
-                    {
-                        agent.SetDestination(hit.point, null);
-                    }
+
                 }
 
             }
 
         }
+        
     }
 }
